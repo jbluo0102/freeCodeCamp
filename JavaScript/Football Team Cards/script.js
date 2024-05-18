@@ -226,3 +226,5 @@ playersDropdownList.addEventListener("change", (e) => {
       setPlayerCards();
   }
 });
+
+setPlayerCards();
