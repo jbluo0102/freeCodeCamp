@@ -21,12 +21,11 @@ button.addEventListener("click", checkUserInput);
 
 function checkUserInput(event) {
   const inputInt = parseInt(input.value);
+  div.classList.remove("hidden");
   if (isNaN(inputInt)) {
     div.innerText = "Please enter a valid number";
     return;
-  }
-
-  if (inputInt < 1) {
+  } else if (inputInt < 1) {
     div.innerText = "Please enter a number greater than or equal to 1";
     return;
   } else if (inputInt > 3999) {
