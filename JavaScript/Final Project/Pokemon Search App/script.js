@@ -1,5 +1,5 @@
 const searchInput = document.getElementById("search-input");
-const searchBtn = document.getElementById("search-button");
+const searchForm = document.getElementById("search-form");
 const pokemonName = document.getElementById("pokemon-name");
 const pokemonID = document.getElementById("pokemon-id");
 const weight = document.getElementById("weight");
@@ -13,7 +13,10 @@ const specialDefense = document.getElementById("special-defense");
 const speed = document.getElementById("speed");
 const fetchUrl = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/";
 
-searchBtn.addEventListener("click", () => {
+searchForm.addEventListener("submit", (e) => {
+  // Prevent page reload
+  e.preventDefault();
+
   // Base check
   const inputValue = searchInput.value.toLowerCase();
   if (!inputValue) {
@@ -26,14 +29,14 @@ searchBtn.addEventListener("click", () => {
 
 async function fetchPokemonData(id) {
   try {
-    const data = await fetch(`${fetchUrl}${id}`);
-    const res = await data.json();
+    const url = `${fetchUrl}${id}`;
+    const response = await fetch(url);
+    const res = await response.json();
     console.log(res);
     updateUI(res);
   } catch (err) {
     console.log(err);
-    alert("Pokémon not found");
-    return null;
+    alert(err);
   }
 }
 
